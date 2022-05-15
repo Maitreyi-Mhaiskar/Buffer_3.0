@@ -1,0 +1,419 @@
+
+
+import java.util.Scanner;
+//import java.util.LinkedList;
+import java.io.*;
+class Node
+{
+	
+	Node next;
+	Node prev;
+	Node ptr;
+	Node temp;
+	Node head;
+	int bed_no;
+	int data;
+	int n=10;
+	int count=0;
+	Node()
+	{
+		
+	}
+	Node(Node next,Node head,Node prev,int bed_no,Node ptr,Node temp,int data)
+	{
+		next=null;
+		head=null;
+		prev=null;
+		bed_no=bed_no;
+		ptr=null;
+		temp=null;
+		data=data;
+	}
+	
+}
+class Management extends Node
+{
+	
+	
+	Management()
+	{
+		head=null;
+	}
+	Scanner sc=new Scanner(System.in);
+	
+	
+	void allocate()
+	{
+		
+		
+		
+		do
+		{
+			System.out.println("Enter the bed number: ");
+			int bedno=sc.nextInt();
+			
+			if(head==null)
+			{
+				head=temp;
+			}
+			else
+			{
+				ptr=head;
+				while(ptr!=null)
+				{
+					ptr=ptr.next;
+					
+				}
+				ptr.next=temp;
+			}
+			n--;
+			
+		}while(n!=0);
+		
+	}
+	/*void delete()
+	{
+
+		Node prev=new Node();
+		Node next=new Node();
+		
+		 int flag=0;
+		temp=head;
+		next=null;
+		prev=null;
+	
+		System.out.println("Enter the position you want to delete: ");
+		int pos=sc.nextInt();
+		
+		
+		if(pos==1)
+		{
+			head=temp.next;
+			
+			
+		}
+		else
+		{
+			for(int i=0;i<pos-1;i++)
+			{
+				temp=temp.next;
+			}
+			//temp.next=temp.next.next;
+			next = temp.next.next;
+			 
+	        temp.next=next;
+		}
+		 flag=1;
+		
+		
+	}*/
+	void delete()    
+	{        // Store head node        
+	              
+	   // Unlink the node from linked list  Node temp = head, prev = null;         
+	 
+	// If head node itself holds the key to be deleted   
+		System.out.println("Enter the position you want to delete: ");
+		int key=sc.nextInt();
+		
+		
+	 if (temp != null && temp.data == key) 
+	 {            head = temp.next; // Changed head 
+	              
+	               
+	               return ;        
+	}    
+	     // Search for the key to be deleted, keep track of   
+	     // the previous node as we need to change temp.next     
+	   while (temp != null && temp.data != key) 
+	   {       
+	            prev = temp; 
+	            temp = temp.next;  
+	         
+	           
+	   }      
+	   
+	// If key was not present in linked list
+	        if (temp == null)  
+	             return ;
+	         prev.next = temp.next;   
+	       
+	}
+	void vacancy()
+	{
+		System.out.println("Enter the total patients who discharged from the hospital: ");
+		int pat_dis=sc.nextInt();
+		int n=10;
+		int pat_occ=n-pat_dis;
+		
+		System.out.println("Total beds"+"\t"+"Occupied"+"\t"+"Vacant");
+		System.out.println(n+"           \t"+   pat_occ+   "       \t     "+pat_dis);
+	}
+
+	
+
+}
+
+public class Hospital {
+	public static void main(String[] args)  {
+		// TODO Auto-generated method stub
+		Management ob=new Management();
+		//LinkedList<String> list = new LinkedList<String>();
+		Scanner sc=new Scanner(System.in);
+			int count=0;
+			int c=0;
+			System.out.println("Welcome to our system!");
+	    	System.out.println("May I know who is accessing the system? \n 1] Hospital Staff \n 2] Patient");
+	    	int ch=sc.nextInt();
+	    	if(ch==1)
+	    	{
+	    		
+	    		//get the object of console class
+	    		
+	    		/*Console con=System.console();
+	    		char[] chars=con.readPassword();
+	    		String password=new String(chars);*/
+	    		System.out.println("Enter the hospital password: ");
+				String password=sc.next();
+				if(password.equals("Deenanath123"))
+				{
+					System.out.println("Correct!");
+					
+					do
+					{
+						
+						System.out.println("Enter your choice: ");
+						System.out.println("1. Allocate the beds");
+						System.out.println("2. Delete or vacate the bed");
+						System.out.println("3. Give the count of vacant beds ");
+						int choice=sc.nextInt();
+						switch(choice)
+						{
+						case 1:
+							System.out.println("**********ALLOCATE**********");
+							ob.allocate();
+							break;
+							
+						case 2:
+							System.out.println("**********DELETE*************");
+							ob.delete();
+							System.out.println("Record deleted!");
+							
+							
+							break;
+							
+						case 3:
+							System.out.println("**********VACANCY*************");
+							ob.vacancy();
+							break;
+						}
+						System.out.println("Do you wish to continue? \nYes-1 \nNo-2");
+						c=sc.nextInt();
+					
+					}while(c==1);
+					System.out.println("Thank you for visiting");
+					
+				}
+				else
+				{
+					
+				
+	    		
+	    		while(count<=1)
+	    		{
+	    			System.out.println("Enter the hospital password: ");
+	    		    password=sc.next();
+	    			if(!password.equals("Deenanath123"))
+	    			{
+	    				
+	    				System.out.println("Invalid password");
+	        			count++; 
+	    			}
+	    			else
+	    			{
+	    				System.out.println("");
+	    			}
+	    			
+	    			
+	    		}
+	    		System.out.println("Please try again later");
+				}
+				
+				
+				
+	    		
+	    	}
+	    		/*if(password.equals("Deenanath@123"))
+	    		{
+	    			System.out.println("Welcome to the staff system!");
+	    		}
+	    		else
+	    		{
+	    			System.out.println("Invalid password.");
+	    			count++;
+	    			
+	    		}
+	    	}
+	    	else if(ch==2)
+	    	{
+	    		System.out.println("Welcome to the patient system.");
+	    	}*/
+	    	
+	    	else 
+	    	{
+	    		System.out.println("How may I help you??");
+	    		System.out.println("Select the option from the menu down.");
+	    		class patient_node{
+	    		    //variables of patients name,address and phone number
+	    		    int patient_no;
+	    		    String patient_name;
+	    		    String patient_address;
+	    		    long patient_PhNo;
+	    		    Integer PatientId;
+	    		    String MedicineName;
+	    		    Integer NumberOfBoxes;
+	    		    String Doses;
+	    		    patient_node next;
+	    		    patient_node head;
+	    		    //constructor with no parameters
+	    		    patient_node(){}
+	    		    //constructor with parameters
+	    		    patient_node(int patient_no,String patient_name,String patient_address,long patient_PhNo){
+	    		        this.patient_no=patient_no;
+	    		        this.patient_name=patient_name;
+	    		        this.patient_address=patient_address;
+	    		        this.patient_PhNo=patient_PhNo;
+	    		        this.PatientId=PatientId;
+	    		        this.MedicineName=MedicineName;
+	    		        this.NumberOfBoxes=NumberOfBoxes;
+	    		        this.Doses=Doses;
+	    		    }
+	    		}
+
+	    		class testing extends patient_node{
+	    		    patient_node obj=new patient_node();
+	    		    public void create(){
+	    		        Scanner sc=new Scanner(System.in);
+	    		        System.out.println("Enter the number of Customers you want to accept:");
+	    		        int n=sc.nextInt();
+	    		        for(int i=n;i>0;i--){
+	    		            System.out.println("Enter the patient number");
+	    		            patient_no=sc.nextInt();
+	    		            sc.nextLine();
+	    		            System.out.println("Enter the patient name:");
+	    		            patient_name=sc.nextLine();
+	    		            System.out.println("Enter the address of the patient:");
+	    		            patient_address=sc.nextLine();
+	    		            System.out.println("Enter the Phone Number of the patient:");
+	    		            patient_PhNo=sc.nextLong();
+	    		            System.out.println();
+	    		            patient_node temp=new patient_node(patient_no,patient_name,patient_address,patient_PhNo);
+	    		            if(head==null){
+	    		                head=temp;
+	    		            }
+	    		            else{
+	    		                obj=head;
+	    		                while(obj.next!=null){
+	    		                    obj=obj.next;
+	    		                }
+	    		                obj.next=temp;
+	    		            }
+	    		        }
+	    		    }
+
+	    		    void display(){
+	    		        if(head==null){
+	    		            System.out.println("No Data Found");
+	    		        }
+	    		        else{
+	    		            obj=head;
+	    		            do{
+	    		                System.out.println("Patient number: " +patient_no);
+	    		                System.out.println("Patient Name:   " + patient_name);
+	    		                System.out.println("Address:        "+patient_address);
+	    		                System.out.println("Phone Number:   " + patient_PhNo);
+	    		                obj=obj.next;
+	    		            }while(obj!=null);
+	    		        }
+	    		    }
+	    		    void Testing_Facility(){
+	    		        Scanner sc=new Scanner(System.in);
+	    		        System.out.println("1.MRI Scan");
+	    		        System.out.println("2.CT Scan");
+	    		        System.out.println("3.X-ray");
+	    		        System.out.println("4.ultrasound");
+	    		        System.out.println("5.Electromyograpgy");
+	    		        System.out.println("Enter the testing option you want to opt for:");
+	    		        int n=sc.nextInt();
+	    		        System.out.println("Your appointed is being received and the patient info is");
+	    		        display();
+
+	    		    }
+
+	    		    void Medical_Prescription(){
+	    		        Scanner sc=new Scanner(System.in);
+	    		        System.out.println("Enter the patient Id");
+	    		        PatientId=sc.nextInt();
+	    		        sc.nextLine();
+	    		        System.out.println("Enter the Medicine name:");
+	    		        MedicineName=sc.nextLine();
+	    		        System.out.println("Enter the Number of Boxes of Medicines:");
+	    		        NumberOfBoxes=sc.nextInt();
+	    		        System.out.println("Enter the Doses of the medicine:");
+	    		        Doses=sc.nextLine();
+	    		        System.out.println();
+	    		    }
+
+	    		    void PrescriptionDisplay(){
+	    		        System.out.println("The Prescription Description is:");
+	    		        System.out.println("Patient Id: " +PatientId);
+	    		        System.out.println("Medicine Name:   " + MedicineName);
+	    		        System.out.println("Boxes of Medicine:        "+ NumberOfBoxes);
+	    		        System.out.println("Doses of Medicine are:   " + Doses);
+	    		    }
+
+
+
+	    		}
+	    		
+	    			// write your code here
+	    		       // Scanner sc=new Scanner(System.in);
+	    		        testing obj=new testing();
+	    		        obj.create();
+	    		        int flag=1;
+	    		        do{
+	    		            System.out.println("Enter your choice");
+	    		            System.out.println("Enter 1 for adding new customer's details");
+	    		            System.out.println("Enter 2 for displaying patients information");
+	    		            System.out.println("Enter 3 for viewing testing option");
+	    		            System.out.println("Enter 4 for entering the medicine prescription");
+	    		            System.out.println("Enter 5 to display the prescription");
+	    		            int choice=sc.nextInt();
+	    		            switch(choice){
+	    		                case 1:
+	    		                    obj.create();
+	    		                    break;
+
+	    		                case 2:
+	    		                    obj.display();
+	    		                    break;
+
+	    		                case 3:
+	    		                    obj.Testing_Facility();
+	    		                    break;
+
+	    		                case 4:
+	    		                    obj.Medical_Prescription();
+	    		                    break;
+
+	    		                case 5:
+	    		                    obj.PrescriptionDisplay();
+	    		                    break;
+	    		            }
+	    		            System.out.println("Enter 1 if you want to continue");
+	    		            flag=sc.nextInt();
+	    		        }while(flag==1);
+
+	    		    }
+	    		}
+	    	}
